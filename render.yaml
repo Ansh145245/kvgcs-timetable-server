@@ -2,10 +2,14 @@ services:
   - type: web
     name: kvgcs-timetable-api
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
+    startCommand: python kvgcs_server.py
+    healthCheckPath: /health
     envVars:
       - key: PORT
         value: 10000
-      - key: PYTHON_VERSION
+      - key: PYTHON_VERSION  
         value: 3.11.0
+      - key: RENDER
+        value: true
